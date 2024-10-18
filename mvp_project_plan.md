@@ -1,49 +1,34 @@
-**Project Plan Outline for MVP**
+**MVP Project Plan**
 
-### 1. **Project Scope Overview**
-   - **Goal**: Create a generic template processor that is not tied to any specific language. The processor will be built using a framework that provides the necessary support, such as mnemonic tree language, record management, conditional dispatching, and introspection features.
+### 1. **Project Overview**
+The purpose of this project is to develop a generic template processor that operates independently of any specific language. This template processor will utilize a framework that handles most of the core operations, including parsing, dispatching, and rendering templates. The framework offers a mnemonic tree language, which is used to define the template language, tokenizers, and parsers.
 
-### 2. **Layered Project Specification**
-   - **Layer 1 - High-Level Vision**: The end goal is to develop a generic template processor capable of handling templates in a flexible way, independent of specific languages or platforms.
-   - **Layer 2 - Framework Details**: The framework includes:
-     - **Mnemonic Tree Language**: Used to define the structure and rules of the template language.
-     - **Record Management**: Manages data records utilized during template processing.
-     - **Conditional Dispatching**: Handles conditions and dispatches functions or processes as needed.
-     - **Custom Types and Introspection**: Supports defining custom types and debugging features to facilitate development.
-   - **Layer 3 - Template Processor Features**:
-     - **Tokenization and Parsing**: Define how templates are tokenized and parsed using the mnemonic tree language.
-     - **Rendering**: Implement efficient template rendering based on parsed structures.
-   - **Layer 4 - MVP Features and Dependencies**:
-     - **Essential MVP Features**: Tokenization, parsing, rendering engine.
-     - **Dependencies**: Ensure the framework components, such as record management and conditional dispatching, are functional to support the template processor.
+The framework also manages records, conditional dispatching, custom types, and offers various introspection and debugging features. A key aspect of the project is ensuring that these components are layered properly, allowing for easy extension, modularity, and effective handling of dependencies.
 
-### 3. **Existing Components**
-   - **Core Features Developed**: List the features that are currently implemented or in progress.
-   - **Current Architecture**: Provide an overview of the system architecture as it exists today, including major components like databases, APIs, or modules.
-   - **Known Dependencies**: Highlight existing dependencies, both internal (e.g., between modules) and external (e.g., third-party services).
+### 2. **Layered Specifications**
+The project is divided into layers to provide a structured approach:
+   - **Core Layer**: Handles the fundamental operations, including tokenization, parsing, and initial AST construction. This layer is built using generic types and interfaces.
+   - **Template Processing Layer**: Uses the core layer to build the template processing capabilities, including AST transformation, inline expression handling, and regulation-based dispatching.
+   - **Rendering Layer**: Focuses on transforming the AST into the final output. This layer involves rendering dispatchers, which evaluate statements and inline expressions.
+   - **User Extension Layer**: Allows users to define their own template language variations or extend the existing template language to suit specific needs.
 
-### 4. **Missing Components**
-   - **Core Features Yet to Be Developed**: Identify the critical features that are currently missing for the MVP.
-   - **Infrastructure Needs**: What technical infrastructure (e.g., server setup, deployment environments) do you still need?
-   - **Technical Debt and Gaps**: Any unresolved technical issues or shortcuts that need to be addressed.
+### 3. **Scope and Prioritization**
+The project scope is focused on achieving a functional MVP that can perform template processing, with the following prioritized features:
+   1. **Basic Template Parsing**: Parsing of text into a tree-like structure, with support for both fixed content and template statements.
+   2. **Conditional Dispatching**: Implementing dispatchers to handle the parsed template nodes, utilizing rules defined by regulations.
+   3. **Rendering**: Converting the parsed AST into the final output using rendering dispatchers, including handling of inline expressions and statements.
+   4. **Factory-based Type Creation**: Introducing factories for creating types based on records and interfaces, enabling modularity and adaptability.
+   5. **Introspection and Debugging Tools**: Providing introspection capabilities to help understand the structure of the AST and assist in debugging during template processing.
 
-### 5. **Prioritization and Feature Breakdown**
-   - **MVP Features**: List the features that are essential for the MVP. Identify "must-haves" versus "nice-to-haves."
-   - **Dependencies and Order**: Create a dependency graph or simple list of tasks that must be completed before others can start.
+### 4. **Key Design Formalities**
+   - **Factories for Type Creation**: To maintain modularity and ensure ease of extension, the project will use factories for creating concrete types from records and interfaces. This approach allows for easy substitution and testing of individual components.
+   - **Mnemonic Tree Language**: The template language is defined using a mnemonic tree language, where text is structured by indentation, similar to YAML or Python. This allows for an intuitive representation of nested templates.
+   - **Dispatchers and Regulations**: The dispatcher system is used extensively for both parsing and rendering. Regulations consist of rules that determine how each node in the template tree should be processed or rendered.
 
-### 6. **Plan to Address Gaps**
-   - **Feature Implementation Plan**: Assign each feature to a sprint or phase of the development cycle.
-   - **Research and Prototyping**: Note any areas where further research or prototyping is needed before development can proceed.
+### 5. **Future Considerations**
+   - **Edge Case Handling**: For now, the focus is on well-formed templates. Future iterations will include validation mechanisms to handle edge cases, such as malformed templates or unsupported constructs.
+   - **Optimizations**: Performance optimizations, such as caching rendered content and using LUT-based regulations for fast lookups, will be addressed in future versions.
 
-### 7. **Timelines and Milestones**
-   - **Development Timeline**: Create a rough timeline for completing the remaining work.
-   - **Milestones**: Identify key milestones along the way, such as "Basic UI Complete," "Core API Functional," or "Initial User Testing."
-
-### 8. **Risks and Challenges**
-   - **Potential Challenges**: Note any anticipated challenges in technology, dependencies, or timelines.
-   - **Mitigation Strategies**: Develop strategies to mitigate these risks.
-
-### 9. **Next Steps**
-   - **Immediate Tasks**: Outline what needs to happen next to move forward.
-   - **Team Assignments**: If you have a team, assign tasks or identify roles that need to be filled.
+### 6. **Summary**
+The MVP focuses on building a generic template processor with a strong foundation in modularity, extensibility, and structured dispatching. The use of mnemonic tree language, layered architecture, and factory-based type creation are key to achieving a flexible and scalable solution.
 
